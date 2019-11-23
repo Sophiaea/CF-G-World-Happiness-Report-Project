@@ -26,16 +26,18 @@ for i in range(len(country_map)):
 
 happiness_data = []
 with open('happy_2015.csv', 'r') as happiness15_file:
-    for rows in happiness15_file:
+    reader = csv.DictReader(happiness15_file)
+    for rows in reader:
         happiness_data.append(rows)
-print(happiness_data)
 
 
 # In[Step 2]
 # Create empty list for happy data countries
-
+countries = []
 # add all the happy data countries to the list
-
+for country in happiness_data:
+    for i in range(len(happiness_data)):
+        countries.append(happiness_data[i]['Country'])
 
 # In[Step 3]
 # create numpy array to store the happiness scores
@@ -43,12 +45,14 @@ happiness_score = np.zeros(len(happiness_data))
 # add the happiness scores to numpy array
 for country in happiness_data:
     for i in range(len(happiness_data)):
-        happiness_score[i] += int(happiness_data[i]['Happiness Score'])
-print(happiness_score)
+        happiness_score[i] = float(happiness_data[i]['Happiness Score'])
 
 # In[Step 4]
 # scale the happiness scores by multiplying by 10^(number of decimal places)
-
+scaled_scores = []
+for scores in happiness_score:
+    scaled_scores.append(happiness_score * 1000)
+print(scaled_scores)
 
 # In[Step 5]
 # Next we need to match the index of the map countries to the happy countries
