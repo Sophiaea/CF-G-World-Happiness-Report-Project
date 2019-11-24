@@ -52,17 +52,17 @@ for country in happiness_data:
 scaled_scores = []
 for scores in happiness_score:
     scaled_scores.append(happiness_score * 1000)
-print(scaled_scores)
 
 # In[Step 5]
 # Next we need to match the index of the map countries to the happy countries
 
 # create a list for the country indexes
-
+country_index = []
 
 # Use a for-loop and the list.index() method to find the index of the matching country name in
 # happy data. Add the index to our list country indexes
-
+for country in happiness_data:
+    country_index.append(happiness_data.index(country))
 
 # In[Step 6: Create colormap]    
 
@@ -70,14 +70,17 @@ print(scaled_scores)
 # The syntax for a colormap is: color_map = cm.get_cmap('viridis', number_of_colors)
 # The following syntax will produce a color for a happiness value eg. happiness 140 -> 
 # happy_color = color_map[140]
-    
-    
+color_map = cm.get_cmap('viridis', len(happiness_data))
+
 # color all countries grey
 map_colors = ['Grey']*265
 
 # create a for-loop, for each country we have in happy data, replace map_colors at the country index
 # with the color map converted of happiness score.
 
+for country in happiness_data:
+    for i in map_colors:
+        map_colors[country_index[i]] = int(scaled_scores[i])
 
 
 
